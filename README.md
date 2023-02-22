@@ -5,9 +5,9 @@
 * 权限与职能授权
 
 组件
-* PostgreSQL database
+* PostgreSQL数据库
 * Apache Kafka enterprise bus
-* Angular based front end
+* Angular前端
 
 功能
 * 项目管理
