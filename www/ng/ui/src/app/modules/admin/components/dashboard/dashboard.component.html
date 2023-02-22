@@ -1,0 +1,34 @@
+<div class="wrapper-component">
+    <div class="wrapper-toolbar">
+        <mat-toolbar color="secondary">
+            <mat-toolbar-row>
+                <button mat-button class="btn-admin-clients" aria-label="Administer clients" [matMenuTriggerFor]="clientsMenu">
+                    Clients
+                </button>
+                <button mat-button class="btn-admin-users" aria-label="Administer users" [matMenuTriggerFor]="usersMenu">
+                    Users
+                </button>
+                <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+                    <mat-icon>favorite</mat-icon>
+                </button>
+                <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+                    <mat-icon>share</mat-icon>
+                </button>
+                <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+                    <mat-icon>share</mat-icon>
+                </button>
+            </mat-toolbar-row>
+        </mat-toolbar><!-- .wrapper-toolbar -->
+
+        <mat-menu #clientsMenu="matMenu">
+            <a mat-menu-item title="List" routerLink="/admin/clients/client/list">List</a>
+            <a mat-menu-item title="Add" routerLink="/admin/clients/client/new">New</a>
+        </mat-menu>
+
+        <mat-menu #usersMenu="matMenu">
+            <a mat-menu-item title="List" routerLink="/admin/users/list">List</a>
+            <a mat-menu-item title="Add" routerLink="/admin/users/new">New</a>
+        </mat-menu>
+    </div>
+</div><!-- .wrapper-component -->
+<router-outlet></router-outlet>

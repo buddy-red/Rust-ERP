@@ -1,0 +1,30 @@
+[package]
+name = "api"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+log = "*"
+env_logger = "*"
+futures = "*"
+
+serde = { version = "*", features = ["derive"] }
+serde_json = "*"
+
+http = "*"
+actix-web = { version = "4", features = ["rustls"] }
+actix-http = "*"
+
+uuid = { version = "0.8.2", features = ["v4", "serde"] }
+rand = "0.8.4"
+
+kafka = "0.9"
+
+common = { path = "../common" }
+config = { path = "../config" }
+token = { path = "../token" }
+#queue = { path = "../queue" }
+#mailer = { path = "../mailer" }
+pg = { path = "../data/pg" }

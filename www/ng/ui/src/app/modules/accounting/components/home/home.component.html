@@ -1,0 +1,17 @@
+<div class="wrapper-component">
+    <div class="wrapper-toolbar">
+        <mat-toolbar color="secondary">
+            <mat-toolbar-row>
+                <button mat-button class="btn-admin-accounts" aria-label="Administer accounts" [matMenuTriggerFor]="accountsMenu">
+                    Accounts
+                </button>
+            </mat-toolbar-row>
+        </mat-toolbar><!-- .wrapper-toolbar -->
+
+        <mat-menu #accountsMenu="matMenu">
+            <a mat-menu-item title="List" routerLink="/accounting/chart">List</a>
+            <a mat-menu-item title="Add" routerLink="/accounting/account/new">New</a>
+        </mat-menu>
+    </div><!-- .wrapper-toolbar -->
+</div><!-- .wrapper-component -->
+<router-outlet></router-outlet>

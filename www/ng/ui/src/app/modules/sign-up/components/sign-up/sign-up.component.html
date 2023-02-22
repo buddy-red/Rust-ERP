@@ -1,0 +1,53 @@
+<div class="wrapper-component">
+    <div class="wrapper-form">
+        <form class="form-signup" method="post" action="" [formGroup]="signUpForm" (ngSubmit)="submit()">
+            <fieldset class="messages">
+            </fieldset>
+            <fieldset formGroupName="emails">
+                <mat-form-field appearance="outline">
+                    <mat-label>Email Address</mat-label>
+                    <input type="email" id="email1" name="email1" class="field-email1" placeholder="Email Address" required matInput formControlName="email1" />
+                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                    <mat-hint>Please enter email address</mat-hint>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Confirm Email Address</mat-label>
+                    <input type="email" id="email2" name="email2" class="field-email2" placeholder="Confirm Email Address" required matInput formControlName="email2" >
+                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                    <mat-hint>Please enter email address</mat-hint>
+                </mat-form-field>
+
+                <div class="wrapper-field-errors">
+                    <div class="error required" *ngIf="((email1?.dirty || email1?.touched) && email1?.errors?.['required']) || ((email2?.dirty && email2?.touched) && email2?.errors?.['required'])">Email address is required</div>
+                    <div class="error invalid" *ngIf="email1?.errors?.['email'] || email2?.errors?.['email']">Email is not valid</div>
+                    <div class="error error-emails-identical" *ngIf="(email1?.dirty || email1?.touched) && (email2?.dirty || email2?.touched) && emails?.errors?.['identical']">Emails are not identical</div>
+                </div><!-- .wrapper-field-errors -->
+            </fieldset>
+            <fieldset formGroupName="passwords">
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input type="password" id="pw1" name="pw1" class="field-pw1" placeholder="Password" required matInput formControlName="pw1" />
+                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                    <mat-hint>Please enter password</mat-hint>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Confirm Password</mat-label>
+                    <input type="password" id="pw2" name="pw2" class="field-pw2" placeholder="Confirm Password" required matInput formControlName="pw2" >
+                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                    <mat-hint>Please enter password</mat-hint>
+                </mat-form-field>
+
+                <div class="wrapper-field-errors">
+                    <div class="error required" *ngIf="((pw1?.dirty || pw1?.touched) && pw1?.errors?.['required']) || ((pw2?.dirty && pw2?.touched) && pw2?.errors?.['required'])">Passwords are required</div>
+                    <div class="error invalid" *ngIf="((pw1?.dirty || pw1?.touched) && pw1?.errors?.['minlength']) || ((pw2?.dirty && pw2?.touched) && pw2?.errors?.['minlength'])">Passwords should be more than 8 characters</div>
+                    <div class="error invalid" *ngIf="((pw1?.dirty || pw1?.touched) && pw1?.errors?.['upper']) || ((pw2?.dirty && pw2?.touched) && pw2?.errors?.['upper'])">Passwords should be have more than 2 upper case characters</div>
+                    <div class="error invalid" *ngIf="((pw1?.dirty || pw1?.touched) && pw1?.errors?.['numeric']) || ((pw2?.dirty && pw2?.touched) && pw2?.errors?.['numeric'])">Passwords should have more than 2 numeric characters</div>
+                    <div class="error error-emails-identical" *ngIf="(pw1?.dirty || pw1?.touched) && (pw2?.dirty || pw2?.touched) && passwords?.errors?.['identical']">Passwords are not identical</div>
+                </div><!-- .wrapper-field-errors -->
+            </fieldset>
+            <fieldset class="actions">
+                <button mat-raised-button color="primary" [disabled]="signUpForm.invalid || submitting">Register</button>
+            </fieldset>
+        </form>
+    </div><!-- .wrapper-form -->
+</div><!-- .wrapper-component -->

@@ -1,0 +1,82 @@
+<div class="wrapper-component admin-client-list">
+    <div class="wrapper-form">
+        <form class="form-filter" method="post" action="" [formGroup]="formFilter" (ngSubmit)="submit()">
+            <fieldset>
+                <mat-form-field appearance="outline">
+                    <mat-label>Filter</mat-label>
+                    <input type="search" id="filter" name="filter" class="field-filter" placeholder="Filter" required matInput formControlName="filter" />
+                </mat-form-field>
+                <mat-select id="items" name="items" class="field-items" formControlName="items">
+                    <mat-option value="10">10</mat-option >
+                    <mat-option value="20">20</mat-option >
+                    <mat-option value="30">30</mat-option >
+                </mat-select>
+                <button type="button" mat-icon-button (click)="navigate_first()" [disabled]="current_page <= 1">
+                    <mat-icon>first_page</mat-icon>
+                </button>
+                <button type="button" mat-icon-button (click)="navigate_previous()" [disabled]="current_page <= 1">
+                    <mat-icon>navigate_before</mat-icon>
+                </button>
+                <mat-form-field appearance="outline">
+                    <input type="number" id="page" name="page" class="field-page" required matInput formControlName="page" />
+                </mat-form-field>
+                <button type="button" mat-icon-button (click)="navigate_next()">
+                    <mat-icon>navigate_next</mat-icon>
+                </button>
+                <button type="button" mat-icon-button (click)="navigate_last()">
+                    <mat-icon>last_page</mat-icon>
+                </button>
+            </fieldset>
+            <fieldset>
+                <button mat-icon-button type="submit">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </fieldset>
+        </form>
+    </div><!-- .wrapper-form -->
+    <div class="wrapper-table">
+        <table class="tbl-clients">
+            <caption>Clients</caption>
+            <colgroup>
+                <col span="4" class="actions">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th scope="col" class="action-view"></th>
+                    <th scope="col" class="action-edit"></th>
+                    <th scope="col" class="action-roles"></th>
+                    <th scope="col" class="action-members"></th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th scope="col" class="action-view"></th>
+                    <th scope="col" class="action-edit"></th>
+                    <th scope="col" class="action-roles"></th>
+                    <th scope="col" class="action-members"></th>
+                    <th>Name</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                <tr *ngFor="let c of clients">
+                    <td>
+                        <a title="View {{ c.name }}" routerLink="/admin/clients/client/view/{{ c.id }}">View</a>
+                    </td>
+                    <td>
+                        <a title="Edit {{ c.name }}" routerLink="/admin/clients/client/edit/{{ c.id }}">Edit</a>
+                    </td>
+                    <td>
+                        <a title="Members" routerLink="/admin/clients/client/roles/{{ c.id }}">Roles</a>
+                    </td>
+                    <td>
+                        <a title="Members" routerLink="/admin/clients/client/members/{{ c.id }}">Members</a>
+                    </td>
+                    <td>
+                        <a title="View {{ c.name }}" routerLink="/admin/clients/client/view/{{ c.id }}">{{ c.name }}</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div><!-- .wrapper-table -->
+</div><!-- .wrapper-component -->

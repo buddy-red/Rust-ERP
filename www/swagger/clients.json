@@ -1,0 +1,313 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "openapi document",
+        "version": "0.0.1"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8081",
+            "description": "local api server"
+        }
+    ],
+    "components": {
+        "schemas":{
+            "apiResponse":{
+                "type":"object",
+                "properties":{
+                    "success":{
+                        "type":"boolean",
+                        "readOnly":true
+                    },
+                    "message":{
+                        "type":"string",
+                        "readOnly":true
+                    },
+                    "data":{
+                        "type":"object",
+                        "readOnly":true,
+                        "nullable":true
+                    }
+                },
+                "required":[
+                    "success",
+                    "message"
+                ]
+            },
+            "clientAddRequest":{
+                "type":"object",
+                "properties":{
+                    "id":{
+                        "type":"string",
+                        "readOnly":true,
+                        "format":"uuid"
+                    },
+                    "name":{
+                        "type":"string",
+                        "readOnly":true
+                    },
+                    "description":{
+                        "type":"string",
+                        "readOnly":true
+                    },
+                    "address":{
+                        "type":"string",
+                        "readOnly":true
+                    },
+                    "country_id":{
+                        "type":"number",
+                        "readOnly":true
+                    },
+                    "url":{
+                        "type":"string",
+                        "readOnly":"true",
+                        "format":"url"
+                    }
+                },
+                "required":[
+                    "id",
+                    "name",
+                    "country_id"
+                ],
+                "example":{
+                    "id":"46292a3a-fbe0-4880-abcb-826c7b1196b8",
+                    "name":"test",
+                    "description":"test client",
+                    "address":"somewhere",
+                    "country_id":608,
+                    "url":"http://localhost:8080"
+                }
+            },
+            "clientUpdateRequest":{
+                "type":"object",
+                "properties":{
+                    "id":{
+                        "type":"string",
+                        "readOnly":true,
+                        "format":"uuid"
+                    },
+                    "name":{
+                        "type":"string",
+                        "readOnly":true
+                    },
+                    "description":{
+                        "type":"string",
+                        "readOnly":true
+                    },
+                    "address":{
+                        "type":"string",
+                        "readOnly":true
+                    },
+                    "country_id":{
+                        "type":"number",
+                        "readOnly":true
+                    },
+                    "url":{
+                        "type":"string",
+                        "readOnly":"true",
+                        "format":"url"
+                    }
+                },
+                "required":[
+                    "id",
+                    "name",
+                    "country_id"
+                ]
+            },
+            "clientSetActiveRequest":{
+                "type":"object",
+                "properties":{
+                    "id":{
+                        "type":"string",
+                        "readOnly":true,
+                        "format":"uuid"
+                    },
+                    "active":{
+                        "type":"boolean",
+                        "readOnly":true
+                    }
+                },
+                "required":[
+                    "id",
+                    "active"
+                ]
+            },
+            "clientFetchRequest":{
+                "type":"object",
+                "properties":{
+                    "filter":{
+                        "type":"string",
+                        "readOnly":true
+                    },
+                    "active":{
+                        "type":"boolean",
+                        "readOnly":true,
+                        "description":"return active clients only"
+                    },
+                    "items":{
+                        "type":"number",
+                        "readOnly":true,
+                        "description":"number of items to include in the result"
+                    },
+                    "page":{
+                        "type":"number",
+                        "readOnly":true
+                    }
+                },
+                "required":[
+                    "filter",
+                    "active",
+                    "items",
+                    "page"
+                ],
+                "example":{
+                    "filter":"%",
+                    "active":false,
+                    "items":10,
+                    "page":1
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearer": {
+                "type": "http",
+                "description": "Bearer authentication",
+                "name": "Authorization",
+                "in": "header",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "paths":{
+        "/clients/add":{
+            "summary":"add a client",
+            "post":{
+                "summary": "POST method",
+                "tags":["clients"],
+                "operationId":"client_add",
+                "requestBody":{
+                    "required":true,
+                    "content":{
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/clientAddRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "client added",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/apiResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/clients/update":{
+            "summary":"update a client",
+            "post":{
+                "summary": "POST method",
+                "tags":["clients"],
+                "operationId":"client_update",
+                "requestBody":{
+                    "required":true,
+                    "content":{
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/clientUpdateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "client updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/apiResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/clients/set/active":{
+            "summary":"set client active status",
+            "post":{
+                "summary": "POST method",
+                "tags":["clients"],
+                "operationId":"client_set_active",
+                "requestBody":{
+                    "required":true,
+                    "content":{
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/clientSetActiveRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "client set active status",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/apiResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/clients/fetch":{
+            "summary":"fetch clients",
+            "post":{
+                "summary": "POST method",
+                "tags":["clients"],
+                "operationId":"clients_fetch",
+                "requestBody":{
+                    "required":true,
+                    "content":{
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/clientFetchRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "fetch clients",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/apiResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        }
+    }
+}

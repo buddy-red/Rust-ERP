@@ -1,0 +1,32 @@
+[package]
+name = "pg"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dev-dependencies]
+env_logger = "*"
+actix-rt = "*"
+rand = "0.8.4"
+ctor = "*"
+lazy_static = "*"
+
+[dependencies]
+log = "*"
+
+futures = "*"
+
+deadpool = "0.9.3"
+deadpool-postgres = "0.10.1"
+tokio-postgres = { version = "0.7", features = ["with-uuid-0_8"] }
+postgres-types = { version = "*", features = ["derive"] }
+
+actix-web = { version = "4", features = ["rustls"] }
+serde = { version = "*", features = ["derive"] }
+
+uuid = { version = "0.8.2", features = ["v4", "serde"] }
+
+
+config = { path = "../../config" }
+common = { path = "../../common" }

@@ -1,0 +1,11 @@
+[workspace]
+members = [
+	"config",
+	"token",
+	"mailer",
+	"queue",
+	"common",
+	"data/pg",
+	"api",
+	"consumers/qmailer"
+]

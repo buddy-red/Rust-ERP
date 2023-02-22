@@ -1,0 +1,137 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "openapi document",
+        "version": "0.0.1"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8081",
+            "description": "local api server"
+        }
+    ],
+    "components": {
+        "schemas":{
+            "apiResponse":{
+                "type":"object",
+                "properties":{
+                    "success":{
+                        "type":"boolean",
+                        "readOnly":true
+                    },
+                    "message":{
+                        "type":"string",
+                        "readOnly":true
+                    },
+                    "data":{
+                        "type":"object",
+                        "readOnly":true,
+                        "nullable":true
+                    }
+                },
+                "required":[
+                    "success",
+                    "message"
+                ]
+            },
+            "currentUserRequest":{
+                "type":"object",
+                "properties":{},
+                "required":[]
+            },
+            "userClientAddRequest":{
+                "type":"object",
+                "properties":{
+                    "client_id":{
+                        "type":"string",
+                        "format":"uuid"
+                    }
+                },
+                "required":[
+                    "client_id"
+                ]
+            }
+        },
+        "securitySchemes": {
+            "bearer": {
+                "type": "http",
+                "description": "Bearer authentication",
+                "name": "Authorization",
+                "in": "header",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "paths":{
+        "/user/current":{
+            "summary":"get current user",
+            "post":{
+                "summary": "POST method",
+                "tags":["user"],
+                "operationId":"user_current",
+                "requestBody":{
+                    "required":true,
+                    "content":{
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/currentUserRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "current user retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/apiResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/user/client/add":{
+            "summary":"add user to client",
+            "post":{
+                "summary": "POST method",
+                "tags":["user"],
+                "operationId":"user_client_add",
+                "requestBody":{
+                    "required":true,
+                    "content":{
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/userClientAddRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "user added to client",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/apiResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        }
+    }
+}

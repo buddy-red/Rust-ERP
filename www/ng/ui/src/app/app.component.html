@@ -1,0 +1,86 @@
+<div id="component-app" class="wrapper-component">
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav class="navleft" #$navleft mode="over" position="start">
+      <ul>
+        <li><a title="Admin" routerLink="admin">Admin</a></li>
+        <li><a title="CRM" routerLink="crm">CRM</a></li>
+        <li><a title="HR" routerLink="hr">HR</a></li>
+        <li><a title="Accounting" routerLink="accounting">Accounting</a></li>
+        <li><a title="Inventory" routerLink="inventory">Inventory</a></li>
+      </ul>
+    </mat-sidenav>
+
+    <mat-sidenav #$navright mode="over" position="end">
+      <div class="wrapper-messages">
+        <h6>Messages</h6>
+        <div class="message" *ngFor="let m of messages">
+          <div class="message-text messages-{{ m.type }}">
+            {{ m.message }}
+          </div><!-- .message-text -->
+          <button mat-icon-button class="btn-close-message" (click)="close_message(m.id)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div><!-- .message -->
+      </div><!-- .wrapper-messages -->
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+
+      <mat-toolbar class="tb-app" color="primary">
+        <button mat-icon-button (click)="$navleft.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <h1><a title="{{ app_name }}" routerLink="">{{ app_name }}</a></h1>
+        <span class="spacer"></span>
+        <button mat-icon-button class="notifications" aria-label="Notifications" (click)="$navright.toggle()">
+          <mat-icon>notifications</mat-icon>
+        </button>
+        <button mat-button [matMenuTriggerFor]="menuClients" aria-label="Clients">
+          <div>{{ user.client }}</div>
+        </button>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Settings">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+              <mat-icon>dialpad</mat-icon>
+              <span>Redial</span>
+          </button>
+          <button mat-menu-item disabled>
+              <mat-icon>expand_more</mat-icon>
+              <div>Clients</div>
+          </button>
+          <a mat-menu-item title="Profile" routerLink="/profile" *ngIf="user.is_signed_in">Profile</a>
+          <mat-divider></mat-divider>
+          <a mat-menu-item title="Sign In" routerLink="/sign-in" *ngIf="!user.is_signed_in">Sign In</a>
+          <a mat-menu-item title="Sign Out" routerLink="/sign-out" *ngIf="user.is_signed_in">Sign Out</a>
+        </mat-menu>
+
+        <mat-menu #menuClients="matMenu">
+          <button *ngFor="let c of user.clients" title="{{ c.name }}" mat-menu-item (click)="switch_client(c.id)">
+            {{ c.name }}
+          </button>
+          <mat-divider></mat-divider>
+          <a mat-menu-item title="Join client" routerLink="/client/join">Join client...</a>
+        </mat-menu>
+      </mat-toolbar>
+
+      <div class="wrapper-content">
+        <div class="wrapper-tb-content">
+          <button mat-icon-button>
+            <mat-icon>notifications</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon>notifications</mat-icon>
+          </button>
+        </div>
+        <div class="wrapper-content-main">
+          <router-outlet></router-outlet>
+          <router-outlet name="secondary"></router-outlet>
+        </div>
+      </div>
+      
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div><!-- .wrapper-component -->

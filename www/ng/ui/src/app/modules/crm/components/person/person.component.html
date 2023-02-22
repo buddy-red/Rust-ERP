@@ -1,0 +1,44 @@
+<div class="wrapper-component">
+    <app-crm-toolbar></app-crm-toolbar>
+    <div class="wrapper-form">
+        <form class="form-person" method="post" action="">
+            <fieldset class="actions">
+                <button mat-raised-button type="submit">
+                    Save
+                </button>
+            </fieldset>
+            <fieldset>
+                <mat-form-field appearance="outline">
+                    <mat-label>Given Name</mat-label>
+                    <input type="text" id="given_name" name="given_name" class="field-given-name" placeholder="Given Name" required matInput formControlName="given_name" />
+                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                    <mat-hint>Please enter given name</mat-hint>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Middle Name</mat-label>
+                    <input type="text" id="middle_name" name="middle_name" class="field-middle-name" placeholder="Middle Name" required matInput formControlName="middle_name" />
+                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                    <mat-hint>Please enter middle name</mat-hint>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Family Name</mat-label>
+                    <input type="text" id="family_name" name="family_name" class="field-family-name" placeholder="Family Name" required matInput formControlName="family_name" />
+                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                    <mat-hint>Please enter family name</mat-hint>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Prefix</mat-label>
+                    <input type="text" id="prefix" name="prefix" class="field-prefix" placeholder="Prefix" required matInput formControlName="prefix" />
+                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                    <mat-hint>Please enter prefix</mat-hint>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Suffix</mat-label>
+                    <input type="text" id="suffix" name="suffix" class="field-suffix" placeholder="Prefix" required matInput formControlName="suffix" />
+                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                    <mat-hint>Please enter suffix</mat-hint>
+                </mat-form-field>
+            </fieldset>
+        </form>
+    </div><!-- .wrapper-form -->
+</div><!-- .wrapper-component -->

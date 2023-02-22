@@ -1,0 +1,58 @@
+<div class="wrapper-component">
+    <div class="wrapper-toolbar">
+        <mat-toolbar color="secondary">
+            <mat-toolbar-row>
+                <button mat-button class="btn-users" aria-label="Administer Members" [matMenuTriggerFor]="membersMenu">
+                    Members
+                </button>
+            </mat-toolbar-row>
+        </mat-toolbar>
+
+        <mat-menu #membersMenu="matMenu">
+            <a mat-menu-item title="List" routerLink="/admin/clients/client/invite/{{ client_id }}">Invite</a>
+        </mat-menu>
+    </div><!-- .wrapper-toolbar -->
+    <div class="wrapper-form">
+        <form class="form-members" method="post" action="" [formGroup]="formMembers" (ngSubmit)="submit()">
+            <fieldset class="members">
+                <div class="wrapper-table">
+                    <table class="tbl-members-active">
+                        <caption>Active Members</caption>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Email</th>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let m of members_active">
+                                <app-member-item [member]="m"></app-member-item>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                    <button type="submit">remove</button>
+                </div><!-- .wrapper-table -->
+            </fieldset>
+            <fieldset class="requests">
+                <div class="wrapper-table">
+                    <table class="tbl-members-inactive">
+                        <caption>Inactive and Requesting Members</caption>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Email</th>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let m of members_inactive">
+                                <app-member-item [member]="m"></app-member-item>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div><!-- .wrapper-table -->
+            </fieldset>
+        </form>
+    </div><!-- .wrapper-form -->
+</div><!-- .wrapper-component -->
